@@ -1,17 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Navbar from "./components/Navbar";
+import { JSX } from "react";
 
-function App() {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Define all routes here */}
-        <Route path="/" element={<Index />} />
+      {/* Navbar always visible */}
+      <Navbar />
 
-        {/* IMPORTANT: DO NOT place any routes below this. */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {/* Main content with padding so Navbar does not overlap */}
+      <div className="pt-16">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
